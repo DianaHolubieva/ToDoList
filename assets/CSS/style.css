@@ -1,0 +1,23 @@
+body{
+    background-color: rgb(0, 148, 185);
+}
+h1{
+    text-align: center;
+}
+.addTasks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.addTasks > .button-wrapper{
+    margin-left: 10px;
+}
+h2{
+    text-align: center;
+}
+.todos-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
