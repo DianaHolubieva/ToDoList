@@ -1,8 +1,8 @@
-const addTaskBtn = document.querySelector('.addTasks');
+const addTaskBtn = document.querySelector('.add-todo-wrapper');
 const deskTaskInput = document.querySelector('description-task');
 
 let tasks;
-!localStorage.tasks ? tasks = [] : task = JSON.parse(localStorage.getItem('tasks'));
+!localStorage.tasks ? tasks = [] : tasks = JSON.parse(localStorage.getItem('tasks'));
 
 let todoItemElem = [];
 
@@ -16,14 +16,21 @@ const createTemplate = (task, index) => {
                     <div class="description">${task.description}</div>
                     <div class="buttons">
                         <input onclick="completeTasks(${index})" class="btn-complete" type="checkbox" ${task.completed ? 'checked' : ''}>
-                        <button class="btn-delete">Delete</button>
+                        <button onclick="deleteTasks(${index})"class="btn-delete">Delete</button>
                     </div>
                 </div>`
 }
 
+const filterTasks = () => {
+    const activeTasks = tasks.lenght && tasks.filter(item => item.completed === false);
+    const completedTasks = tasks.lenght && tasks.filter(item => item.completed === true);
+    tasks = [...activeTasks, ...completedTasks]
+}
+
 const fillHtmlList = () => {
-    todosWrapper.innerHTML = " ";
+    todosWrapper.innerHTML = "";
     if (tasks.lenght > 0) {
+        filterTasks();
         tasks.forEach((item, index) => {
             todosWrapper.innerHTML += createTemplate(item, index);
         });
@@ -36,12 +43,12 @@ const updateLocal = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-const completeTaskk = index => {
+const completedTasks = index => {
     tasks[index].completed = !tasks[index].completed;
-    if(tasks[index].completed){
+    if (tasks[index].completed) {
         todoItemElem[index].classList.add('checked');
-    }else {
-        todoItemElem[index].classList.remove('checked'); 
+    }else{
+        todoItemElem[index].classList.remove('checked');
     }
     updateLocal();
     fillHtmlList();
@@ -53,3 +60,12 @@ addTaskBtn.addEventListener('click', () => {
     fillHtmlList();
     deskTaskInput.value = '';
 })
+
+const deleteTask = index => {
+    todoItemElem[index].classList.add('delition');
+    setTimeout(() => {
+        tasks.splice(index, 1);
+        updateLocal();
+        fillHtmlList();
+    }, 500)
+}
