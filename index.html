@@ -8,20 +8,13 @@
 <body>
     <h1>To Do List</h1>
     <div class="flex-wrapper">
-        <div class="add-todo-wrapper">
-            <div class="input-wrapper">
-                <input type="text" id="description-task">
-            </div>
-            <div class="button-wrapper">
-                <button id="add-task-btn">Добавить</button>
-            </div>
+                <input class="description-task" type="text" onclick="addTasksBtn">
+                <button class= "addTasksBtn">Добавить</button>
         </div>
-        <h2>Задачи на день:</h2>
-        <div class="todos-wrapper">
-            <div class=".todo-item">
-            </div>
-        </div>
-    </div>
+        <ul class="tasksList">
+
+        </ul>
+       
     <script src="./assets/JS/index.js"></script>
 </body>
 </html>
