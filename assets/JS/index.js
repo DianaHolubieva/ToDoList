@@ -1,13 +1,11 @@
-const addTasksBtn = document.querySelector('.addTasksBtn');
-const inputTask = document.querySelector('.description-task');
-const tasksList = document.querySelector('.tasksList');
-let task = document.createElement('li');
+const addTasksBtn = document.getElementById('btn');
+const tasksList = document.getElementById('tasksList');
+const inputEl = document.getElementById('task');
 
-function Task(description){
-    this.description = description;
-};
-
-addTasksBtn.addEventListener = ('click', () => {
-    tasksList.appendChild(task);
-    task.push(new Task(inputTask.value));
-});
+btn.addEventListener = ('click', addTask);
+   
+function addTask(e){
+    const item = document.createElement('li');
+    item.innerHTML = inputEl.value;
+    tasksList.append(item);
+}
